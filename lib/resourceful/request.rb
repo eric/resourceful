@@ -102,7 +102,7 @@ module Resourceful
     def follow_redirect(response)
       raise MalformedServerResponse.new(self, response) unless response.header.location
       if response.moved_permanently?
-        new_uri = response.header.location.first
+        new_uri = response.header.location
         logger.info("    Permanently redirected to #{new_uri} - Storing new location.")
         resource.update_uri new_uri
         @header.host = resource.host
